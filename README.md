@@ -1,16 +1,34 @@
-# contador
+import java.util.ArrayList;
+import java.util.List;
 
-A new Flutter project.
+public class MeuBD {
+    private List<ContaCorrente> contas;
 
-## Getting Started
+    //CONSTRUCTOR
+    public MeuBD() {
+        contas = new ArrayList<>();
+    }
 
-This project is a starting point for a Flutter application.
+    //NEW ACCOUNT
+    public void novo(ContaCorrente conta) {
+        contas.add(conta);
+    }
 
-A few resources to get you started if this is your first Flutter project:
+    //SEARCH ACCOUNT
+    public ContaCorrente pegar(int numero) {
+        for (ContaCorrente conta : contas) {
+            if (conta.getNumero() == numero) {
+                return conta;
+            }
+        }
+        return null;
+    }
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+    //LIST ACCOUNTS
+    public void listaCli() {
+        System.out.println("--------- Relação de clientes do banco FEMA -----------");
+        for (ContaCorrente conta : contas) {
+            System.out.println("Nome:" + conta.getDono().getNome() + ", Saldo = R$" + conta.getSaldo());
+        }
+    }
+}
